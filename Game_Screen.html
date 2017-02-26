@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Highway Crossing Frogs</title>
+    <!--import CSS page here-->
+    <!--<link type="text/css" rel="stylesheet" href="file name"/>-->
+
+    <!--<script language="javascript" type="text/javascript" src="file name"></script>-->
 </head>
 <body>
 
     <div>
         <p id="score_area">SCORE: <span id="score">0</span> </p>
-        <canvas id="myCanvas" width="90%" height="40%">
+        <canvas id="myCanvas" width="800" height="600" style="border: 2px solid;">
 
 
 
@@ -16,6 +20,11 @@
 
         </canvas>
     </div>
+
+    <script>
+        var theCanvas = document.getElementById('myCanvas').getContext('2d');
+
+    </script>
 
 </body>
 </html>
