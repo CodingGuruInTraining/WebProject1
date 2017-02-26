@@ -48,9 +48,9 @@
             this.travelDist = 5;
             console.log("made new player object");
             keyPressed(this);
-            this.update = function(keycode) {
+            this.update = function (keycode) {
                 console.log("update function with: " + keycode);
-                switch(keycode) {
+                switch (keycode) {
                     case 37:    // left
                         this.x -= this.travelDist;
                         break;
@@ -78,7 +78,10 @@
 //                if (keys[40]) {
 //                    this.y = this.y + this.travelDist;
 //                }
+            };
+            theContext.fillRect(this.x, this.y, this.width, this.height);
         };
+
 
         function keyPressed(player) {
             document.addEventListener('keydown', function(event) {
@@ -101,7 +104,7 @@
 //                        this.y += this.travelDist;
 //                        break;
 //                }
-            };
+//            };
 //            theContext.fill(0, 255, 0);
 //            theContext.rect(this.x, this.y, this.width, this.height);
 
@@ -124,3 +127,4 @@
 
 <!--Helpful References:-->
 <!--https://www.youtube.com/watch?v=Pzox_XTpoVU-->
+<!--https://github.com/jmiguelsamper/html5-frogger/blob/master/js/core/Player.js-->
