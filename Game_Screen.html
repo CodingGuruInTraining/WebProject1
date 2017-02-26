@@ -37,7 +37,7 @@
             this.y = theCanvas.height / 2;
             this.width = 50;
             this.height = 20;
-            this.travelDist = 5;
+            this.travelDist = 8;
 //            console.log("made new player object");
             keyPressed(this);
             this.update = function (keycode) {
@@ -69,6 +69,14 @@
             theContext.fillRect(this.x, this.y, this.width, this.height);
         };
 
+        var Frog = function(x, y) {
+            this.x = x;
+            this.y = y;
+            this.width = 20;
+            this.height = 20;
+            this.travelDist = 5;
+
+        };
 
 
 
