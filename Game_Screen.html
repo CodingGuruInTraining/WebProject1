@@ -33,32 +33,60 @@
 //        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
 
         var keys = [];
-        var keyPressed = function() {
-            keys[keyCode] = true;
-        };
-        var keyReleased = function() {
-            keys[keyCode] = false;
-        };
+//        var keyPressed = function() {
+//            keys[keyCode] = true;
+//        };
+//        var keyReleased = function() {
+//            keys[keyCode] = false;
+//        };
 
         var Player = function() {
             this.x = 30;
-            this.y = theCanvas.height/2;
+            this.y = theCanvas.height / 2;
             this.width = 50;
             this.height = 20;
             this.travelDist = 5;
-            this.update = function() {
-                if (keys[37]) {
-                    this.x = this.x - this.travelDist;
+            console.log("made new player object");
+            keyPressed(this);
+            this.update = function(keycode) {
+                console.log("update function with: " + keycode);
+                switch(keycode) {
+                    case 37:    // left
+                        this.x -= this.travelDist;
+                        break;
+                    case 38:    // up
+                        this.y += this.travelDist;
+                        break;
+                    case 39:    // right
+                        this.x += this.travelDist;
+                        break;
+                    case 40:    // down
+                        this.y += this.travelDist;
+                        break;
                 }
-                if (keys[38]) {
-                    this.y = this.y - this.travelDist;
-                }
-                if (keys[39]) {
-                    this.x = this.x + this.travelDist;
-                }
-                if (keys[40]) {
-                    this.y = this.y + this.travelDist;
-                }
+
+
+//                if (keys[37]) {
+//                    this.x = this.x - this.travelDist;
+//                }
+//                if (keys[38]) {
+//                    this.y = this.y - this.travelDist;
+//                }
+//                if (keys[39]) {
+//                    this.x = this.x + this.travelDist;
+//                }
+//                if (keys[40]) {
+//                    this.y = this.y + this.travelDist;
+//                }
+        };
+
+        function keyPressed(player) {
+            document.addEventListener('keydown', function(event) {
+                player.update(event.keyCode)
+            })
+        }
+
+
 //                switch(keyCode) {
 //                    case 37:    // left
 //                        this.x -= this.travelDist;
@@ -74,13 +102,16 @@
 //                        break;
 //                }
             };
-            theContext.fill(0, 255, 0);
-            theContext.rect(this.x, this.y, this.width, this.height);
-        };
+//            theContext.fill(0, 255, 0);
+//            theContext.rect(this.x, this.y, this.width, this.height);
 
+//        document.onload = (function() {
+//            var thePlayer = new Player();
+//        });
         var thePlayer = new Player();
 
         var draw = function() {
+            console.log("draw function reached");
             background(255,0,0);
             thePlayer.update();
         };
