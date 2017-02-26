@@ -6,23 +6,29 @@
     <!--import CSS page here-->
     <!--<link type="text/css" rel="stylesheet" href="file name"/>-->
 
-    <!--<script language="javascript" type="text/javascript" src="file name"></script>-->
+    <script language="javascript" type="text/javascript" src="javascript_code.js"></script>
 </head>
 <body>
 
     <div>
         <p id="score_area">SCORE: <span id="score">0</span> </p>
         <canvas id="myCanvas" width="800" height="600" style="border: 2px solid;">
-
-
-
-
-
         </canvas>
     </div>
 
     <script>
-        var theCanvas = document.getElementById('myCanvas').getContext('2d');
+        var theCanvas = document.getElementById('myCanvas');
+        var theContext = theCanvas.getContext('2d');
+        theContext.fillStyle = 'lightgray';
+
+        theContext.lineWidth = 5;
+        theContext.strokeStyle = 'black';
+
+//        var street = theContext.strokeRect(0,75,800,450);
+//        theContext.fill(street);
+
+        theContext.fillStyle = 'grey';
+        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
 
     </script>
 
