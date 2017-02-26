@@ -17,9 +17,11 @@
     </div>
 
     <script>
+
+
         var theCanvas = document.getElementById('myCanvas');
         var theContext = theCanvas.getContext('2d');
-        theContext.fillStyle = 'lightgray';
+        theContext.fillStyle = 'lightgray';                             // street color
 
         theContext.lineWidth = 5;
         theContext.strokeStyle = 'black';
@@ -28,9 +30,66 @@
 //        theContext.fill(street);
 
         theContext.fillStyle = 'grey';
-        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
+//        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
 
+        var keys = [];
+        var keyPressed = function() {
+            keys[keyCode] = true;
+        };
+        var keyReleased = function() {
+            keys[keyCode] = false;
+        };
+
+        var Player = function() {
+            this.x = 30;
+            this.y = theCanvas.height/2;
+            this.width = 50;
+            this.height = 20;
+            this.travelDist = 5;
+            this.update = function() {
+                if (keys[37]) {
+                    this.x = this.x - this.travelDist;
+                }
+                if (keys[38]) {
+                    this.y = this.y - this.travelDist;
+                }
+                if (keys[39]) {
+                    this.x = this.x + this.travelDist;
+                }
+                if (keys[40]) {
+                    this.y = this.y + this.travelDist;
+                }
+//                switch(keyCode) {
+//                    case 37:    // left
+//                        this.x -= this.travelDist;
+//                        break;
+//                    case 38:    // up
+//                        this.y += this.travelDist;
+//                        break;
+//                    case 39:    // right
+//                        this.x += this.travelDist;
+//                        break;
+//                    case 40:    // down
+//                        this.y += this.travelDist;
+//                        break;
+//                }
+            };
+            theContext.fill(0, 255, 0);
+            theContext.rect(this.x, this.y, this.width, this.height);
+        };
+
+        var thePlayer = new Player();
+
+        var draw = function() {
+            background(255,0,0);
+            thePlayer.update();
+        };
+
+//        window.addEventListener('keydown', keyPressed, true);
     </script>
 
 </body>
 </html>
+
+<!--Helpful References:-->
+<!--https://www.youtube.com/watch?v=Pzox_XTpoVU-->
