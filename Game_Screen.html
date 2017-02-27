@@ -86,15 +86,16 @@
             this.update = function () {
                 theContext.fillStyle = 'green';
                 theContext.fillRect(this.x, this.y, this.width, this.height);
-            }
+            };
             theContext.fillStyle = 'green';
             theContext.fillRect(this.x, this.y, this.width, this.height);
         };
 
         var frogs = [];
         for (var i = 0; i < 20; i++) {
-            frogs[i] = new Frog(Math.random() * 100,Math.random() * 100);
-            console.log("x: " + frogs[i].x + " y: " + frogs[i].y);
+            frogs[i] = new Frog(Math.random() * (790 - 400) + 400,Math.random() * (590 - 0) + 0);   // Math.random() * (max - min) + min
+
+//            console.log("x: " + frogs[i].x + " y: " + frogs[i].y);
 //            theContext.fillRect(frogs[i].x, frogs[i].y, frogs[i].width, frogs[i].height);
         }
 
@@ -136,3 +137,4 @@
 <!--Helpful References:-->
 <!--https://www.youtube.com/watch?v=Pzox_XTpoVU-->
 <!--https://github.com/jmiguelsamper/html5-frogger/blob/master/js/core/Player.js-->
+<!--http://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range-->
