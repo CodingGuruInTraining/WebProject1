@@ -17,10 +17,15 @@
     </div>
 
     <script>
+        var theCanvas = document.getElementById('myCanvas');
+        var theContext = theCanvas.getContext('2d');
+
+        window.onload = startGame();
+
         function startGame() {
 
-            var theCanvas = document.getElementById('myCanvas');
-            var theContext = theCanvas.getContext('2d');
+//            var theCanvas = document.getElementById('myCanvas');
+//            var theContext = theCanvas.getContext('2d');
             theContext.fillStyle = 'lightgray';                             // street color
 
             theContext.lineWidth = 5;
@@ -77,8 +82,16 @@
             this.width = 20;
             this.height = 20;
             this.travelDist = 5;
+            this.update = function () {
 
+            }
         };
+
+        var frogs = [];
+        for (var i = 0; i < 20; i++) {
+            frogs[i] = new Frog(Math.random(200,300),Math.random(100,300));
+        }
+
 
         function reDrawGame() {
             // redraw background
@@ -107,9 +120,14 @@
 
         var draw = function() {
             console.log("draw function reached");
-            background(255,0,0);
+            background(255,255,255);
             thePlayer.update();
+            for (var i = 0; i < frogs.length; i++) {
+                frogs[i].update();
+            }
         };
+
+
     </script>
 
 </body>
