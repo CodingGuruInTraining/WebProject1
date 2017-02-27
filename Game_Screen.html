@@ -83,6 +83,7 @@
             this.spd = spd;
             this.xSpd = Math.random() * (this.spd - (-this.spd) + (-this.spd));
             this.ySpd = Math.random() * (this.spd - (-this.spd) + (-this.spd));
+            console.log("spds: " + this.xSpd + " " + this.ySpd);
             this.width = 20;
             this.height = 20;
             this.travelDist = 5;
@@ -98,8 +99,12 @@
         };
 
         var frogs = [];
-        for (var i = 0; i < 20; i++) {
-            frogs[i] = new Frog(Math.random() * (790 - 400) + 400,Math.random() * (590 - 0) + 0, Math.random() * (3-1) + 1);   // Math.random() * (max - min) + min
+        for (var i = 0; i < 1; i++) {
+            frogs[i] = new Frog(
+                Math.random() * (790 - 400) + 400,
+                Math.random() * (590 - 0) + 0,
+                Math.random() * (3-1) + 1);
+            // Math.random() * (max - min) + min
 
 //            console.log("x: " + frogs[i].x + " y: " + frogs[i].y);
 //            theContext.fillRect(frogs[i].x, frogs[i].y, frogs[i].width, frogs[i].height);
@@ -115,6 +120,7 @@
 
         function checkBoundaries(player) {
             var badX, badY;
+            console.log("initial bools: " + badX + " " + badY);
             if (player.x < 0) {
                 player.x = 0;
                 badX = true;
@@ -150,7 +156,7 @@
             }
         };
 
-        setInterval(draw,40);
+        setInterval(draw,1000);
 
     </script>
 
