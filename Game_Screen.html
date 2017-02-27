@@ -77,13 +77,19 @@
             theContext.fillRect(this.x, this.y, this.width, this.height);
         };
 
-        var Frog = function(x, y) {
+        var Frog = function(x, y, spd) {
             this.x = x;
             this.y = y;
+            this.spd = spd;
+            this.xSpd = Math.random() * (this.spd - (-this.spd) + (-this.spd));
+            this.ySpd = Math.random() * (this.spd - (-this.spd) + (-this.spd));
             this.width = 20;
             this.height = 20;
             this.travelDist = 5;
             this.update = function () {
+                this.x = this.x + this.xSpd;
+                this.y = this.y + this.ySpd;
+                checkBoundaries(this);
                 theContext.fillStyle = 'green';
                 theContext.fillRect(this.x, this.y, this.width, this.height);
             };
@@ -93,7 +99,7 @@
 
         var frogs = [];
         for (var i = 0; i < 20; i++) {
-            frogs[i] = new Frog(Math.random() * (790 - 400) + 400,Math.random() * (590 - 0) + 0);   // Math.random() * (max - min) + min
+            frogs[i] = new Frog(Math.random() * (790 - 400) + 400,Math.random() * (590 - 0) + 0, Math.random() * (3-1) + 1);   // Math.random() * (max - min) + min
 
 //            console.log("x: " + frogs[i].x + " y: " + frogs[i].y);
 //            theContext.fillRect(frogs[i].x, frogs[i].y, frogs[i].width, frogs[i].height);
@@ -108,18 +114,35 @@
         }
 
         function checkBoundaries(player) {
-            if (player.x < 0) { player.x = 0; }
-            else if ((player.x + player.width) >= theCanvas.width) { player.x = (theCanvas.width - player.width); }
+            var badX, badY;
+            if (player.x < 0) {
+                player.x = 0;
+                badX = true;
+            }
+            else if ((player.x + player.width) >= theCanvas.width) {
+                player.x = (theCanvas.width - player.width);
+                badX = true;
+            }
 
-            if (player.y < 0) { player.y = 0; }
-            else if ((player.y + player.height) >= theCanvas.height) { player.y = (theCanvas.height - player.height); }
+            if (badX == true && player.name == "Frog") { player.xSpd = -player.xSpd; }
+
+            if (player.y < 0) {
+                player.y = 0;
+                badY = true;
+            }
+            else if ((player.y + player.height) >= theCanvas.height) {
+                player.y = (theCanvas.height - player.height);
+                badY = true;
+            }
+
+            if (badY == true && player.name == "Frog") { player.ySpd = -player.ySpd; }
         }
 
 
         var thePlayer = new Player();
 
         var draw = function() {
-            console.log("draw function reached");
+//            console.log("draw function reached");
             theContext.clear; //style.background(255,255,255);
             thePlayer.update();
             for (var i = 0; i < frogs.length; i++) {
@@ -127,7 +150,7 @@
             }
         };
 
-//        setInterval(draw,1000);
+        setInterval(draw,40);
 
     </script>
 
