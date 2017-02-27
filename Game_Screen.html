@@ -17,19 +17,21 @@
     </div>
 
     <script>
-        var theCanvas = document.getElementById('myCanvas');
-        var theContext = theCanvas.getContext('2d');
-        theContext.fillStyle = 'lightgray';                             // street color
+        function startGame() {
 
-        theContext.lineWidth = 5;
-        theContext.strokeStyle = 'black';
+            var theCanvas = document.getElementById('myCanvas');
+            var theContext = theCanvas.getContext('2d');
+            theContext.fillStyle = 'lightgray';                             // street color
+
+            theContext.lineWidth = 5;
+            theContext.strokeStyle = 'black';
 
 //        var street = theContext.strokeRect(0,75,800,450);
 //        theContext.fill(street);
 
-        theContext.fillStyle = 'grey';
+            theContext.fillStyle = 'grey';
 //        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
-
+        }
 
 
         var Player = function() {
@@ -78,6 +80,11 @@
 
         };
 
+        function reDrawGame() {
+            // redraw background
+            // redraw player
+            // redraw EACH frog
+        }
 
 
 
