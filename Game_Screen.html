@@ -68,6 +68,7 @@
                         break;
                 }
                 checkBoundaries(this);
+                theContext.fillStyle = 'red';
                 theContext.fillRect(this.x, this.y, this.width, this.height);
             };
             theContext.clear;
@@ -83,13 +84,18 @@
             this.height = 20;
             this.travelDist = 5;
             this.update = function () {
-
+                theContext.fillStyle = 'green';
+                theContext.fillRect(this.x, this.y, this.width, this.height);
             }
+            theContext.fillStyle = 'green';
+            theContext.fillRect(this.x, this.y, this.width, this.height);
         };
 
         var frogs = [];
         for (var i = 0; i < 20; i++) {
-            frogs[i] = new Frog(Math.random(200,300),Math.random(100,300));
+            frogs[i] = new Frog(Math.random() * 100,Math.random() * 100);
+            console.log("x: " + frogs[i].x + " y: " + frogs[i].y);
+//            theContext.fillRect(frogs[i].x, frogs[i].y, frogs[i].width, frogs[i].height);
         }
 
 
@@ -120,13 +126,14 @@
 
         var draw = function() {
             console.log("draw function reached");
-            background(255,255,255);
+            theContext.clear; //style.background(255,255,255);
             thePlayer.update();
             for (var i = 0; i < frogs.length; i++) {
                 frogs[i].update();
             }
         };
 
+//        setInterval(draw,1000);
 
     </script>
 
