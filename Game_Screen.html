@@ -159,7 +159,20 @@
 
         var thePlayer = new Player();
 
-        var draw = function() {
+
+        function checkCollisions(player, frogs) {
+            for (var i = 0; i < frogs.length; i++) {
+                if (player.x < frogs[i].x + frogs[i].width &&
+                        player.x + player.width > frogs[i].x &&
+                        player.y < frogs[i].y + frogs[i].height &&
+                        player.y + player.height > frogs[i].y) {
+                    console.log("collision!")
+                }
+            }
+        };
+
+
+        function draw() {
 //            console.log("draw function reached");
             theContext.clearRect(0,0,theCanvas.width,theCanvas.height);
 //            theCanvas.clear;
@@ -168,7 +181,8 @@
             for (var i = 0; i < frogs.length; i++) {
                 frogs[i].update();
             }
-        };
+            checkCollisions(thePlayer, frogs)
+        }
 
         setInterval(draw,40);
 
