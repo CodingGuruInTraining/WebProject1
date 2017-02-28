@@ -91,14 +91,16 @@
             this.update = function () {
 //                theContext.clear;
                 this.x = this.x + this.xSpd;
-                if (this.x < 5) {       // can probably combine with OR once working
+                if (this.x < 10 || this.x > 790) {
                     this.xSpd = -this.xSpd;
                 }
-                else if (this.x > 795) {
-                    this.xSpd = -this.xSpd;
-                }
+//                else if (this.x > 795) {
+//                    this.xSpd = -this.xSpd;
+//                }
                 this.y = this.y + this.ySpd;
-
+                if (this.y < 10 || this.y > 590) {
+                    this.ySpd = -this.ySpd;
+                }
 //                checkBoundaries(this);
                 theContext.fillStyle = 'green';
                 theContext.fillRect(this.x, this.y, this.width, this.height);
