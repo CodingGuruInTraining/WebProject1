@@ -89,7 +89,7 @@
             this.height = 20;
             this.travelDist = 5;
             this.update = function () {
-                theContext.clear;
+//                theContext.clear;
                 this.x = this.x + this.xSpd;
                 this.y = this.y + this.ySpd;
 //                checkBoundaries(this);
@@ -152,8 +152,9 @@
 
         var draw = function() {
 //            console.log("draw function reached");
+            theContext.clearRect(0,0,theCanvas.width,theCanvas.height);
 //            theCanvas.clear;
-            theContext.clear; //style.background(255,255,255);
+//            theContext.clear; //style.background(255,255,255);
             thePlayer.update();
             for (var i = 0; i < frogs.length; i++) {
                 frogs[i].update();
@@ -171,3 +172,4 @@
 <!--https://www.youtube.com/watch?v=Pzox_XTpoVU-->
 <!--https://github.com/jmiguelsamper/html5-frogger/blob/master/js/core/Player.js-->
 <!--http://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range-->
+<!--http://stackoverflow.com/questions/2142535/how-to-clear-the-canvas-for-redrawing-->
