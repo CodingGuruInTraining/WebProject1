@@ -11,7 +11,8 @@
 <body>
 
     <div style="position: relative">
-        <p id="score_area">SCORE: <span id="score">0</span> </p>
+        <p id="score_area">SCORE: <span id="score">0</span></p>
+        <p id="lives_area">LIVES: <span id="lives">3</span></p>
         <canvas id="myCanvasBack"></canvas>
         <canvas id="myCanvas"></canvas>
 
@@ -61,7 +62,7 @@
 //            theContext.fillStyle = 'grey';
 //        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
 
-        drawBackground();
+            drawBackground();
             setInterval(draw,40);
         }
 
@@ -234,3 +235,4 @@
 <!--https://github.com/jmiguelsamper/html5-frogger/blob/master/js/core/Player.js-->
 <!--http://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range-->
 <!--http://stackoverflow.com/questions/2142535/how-to-clear-the-canvas-for-redrawing-->
+<!--http://stackoverflow.com/questions/15397036/drawing-dashed-lines-on-html5-canvas-->
