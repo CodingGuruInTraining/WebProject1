@@ -12,8 +12,9 @@
 
     <div style="position: relative">
         <p id="score_area">SCORE: <span id="score">0</span> </p>
-        <canvas id="myCanvas"></canvas>
         <canvas id="myCanvasBack"></canvas>
+        <canvas id="myCanvas"></canvas>
+
         <!--<canvas id="myCanvas" width="800" height="600" style="border: 2px solid" style="position: absolute"></canvas>-->
         <!--<canvas id="myCanvasBack" width="800" height="600" style="border: 2px solid" style="position: absolute"></canvas>-->
     </div>
@@ -22,6 +23,7 @@
         var theCanvas = document.getElementById('myCanvas');
         var theContext = theCanvas.getContext('2d');
         var theBackground = document.getElementById('myCanvasBack');
+        var theBackContext = theBackground.getContext('2d');
 
         window.onload = startGame();
 
@@ -44,16 +46,19 @@
 
 //            var theCanvas = document.getElementById('myCanvas');
 //            var theContext = theCanvas.getContext('2d');
-            theContext.fillStyle = 'lightgray';                             // street color
-
-            theContext.lineWidth = 5;
-            theContext.strokeStyle = 'black';
-
-//        var street = theContext.strokeRect(0,75,800,450);
-//        theContext.fill(street);
-
-            theContext.fillStyle = 'grey';
+//            theContext.fillStyle = 'lightgray';                             // street color
+//
+//            theContext.lineWidth = 5;
+//            theContext.strokeStyle = 'black';
+//
+////        var street = theContext.strokeRect(0,75,800,450);
+////        theContext.fill(street);
+//
+//            theContext.fillStyle = 'grey';
 //        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
+
+
+            theBackContext.fillRect(30,100,50,20);
         }
 
 
