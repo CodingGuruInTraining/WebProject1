@@ -131,29 +131,29 @@
         }
 
         function checkBoundaries(player) {
-            var badX, badY;
+//            var badX, badY;
 //            console.log("initial bools: " + badX + " " + badY);
             if (player.x < 0) {
                 player.x = 0;
-                badX = true;
+//                badX = true;
             }
             else if ((player.x + player.width) >= theCanvas.width) {
                 player.x = (theCanvas.width - player.width);
-                badX = true;
+//                badX = true;
             }
 
-            if (badX == true && player.name == "Frog") { player.xSpd = -player.xSpd; }
+//            if (badX == true && player.name == "Frog") { player.xSpd = -player.xSpd; }
 
             if (player.y < 0) {
                 player.y = 0;
-                badY = true;
+//                badY = true;
             }
             else if ((player.y + player.height) >= theCanvas.height) {
                 player.y = (theCanvas.height - player.height);
-                badY = true;
+//                badY = true;
             }
 //            console.log("end bools: " + badX + " " + badY);
-            if (badY == true && player.name == "Frog") { player.ySpd = -player.ySpd; }
+//            if (badY == true && player.name == "Frog") { player.ySpd = -player.ySpd; }
         }
 
 
@@ -166,10 +166,10 @@
                         player.x + player.width > frogs[i].x &&
                         player.y < frogs[i].y + frogs[i].height &&
                         player.y + player.height > frogs[i].y) {
-                    console.log("collision!")
+//                    console.log("collision!")
                 }
             }
-        };
+        }
 
 
         function draw() {
