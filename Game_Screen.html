@@ -64,6 +64,11 @@
         function drawBackground(heightIncr) {
             theBackContext.fillRect(0,heightIncr,theBackground.width,10);
             theBackContext.fillRect(0,theBackground.height - heightIncr,theBackground.width,10);
+            theBackContext.setLineDash([20, 10]);
+            theBackContext.beginPath();
+            theBackContext.moveTo(0,heightIncr + 50);
+            theBackContext.lineTo(theBackground.width,heightIncr + 50);
+            theBackContext.stroke();
         }
 
         var Player = function() {
