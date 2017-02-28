@@ -91,7 +91,14 @@
             this.update = function () {
 //                theContext.clear;
                 this.x = this.x + this.xSpd;
+                if (this.x < 5) {       // can probably combine with OR once working
+                    this.xSpd = -this.xSpd;
+                }
+                else if (this.x > 795) {
+                    this.xSpd = -this.xSpd;
+                }
                 this.y = this.y + this.ySpd;
+
 //                checkBoundaries(this);
                 theContext.fillStyle = 'green';
                 theContext.fillRect(this.x, this.y, this.width, this.height);
@@ -101,7 +108,7 @@
         };
 
         var frogs = [];
-        for (var i = 0; i < 1; i++) {
+        for (var i = 0; i < 20; i++) {
             frogs[i] = new Frog(
                 // ** Math.random() * (max - min) + min **
                 Math.random() * (790 - 400) + 400,
@@ -161,7 +168,7 @@
             }
         };
 
-        setInterval(draw,1000);
+        setInterval(draw,40);
 
     </script>
 
