@@ -25,21 +25,25 @@
         var theBackground = document.getElementById('myCanvasBack');
         var theBackContext = theBackground.getContext('2d');
 
+        var canvasWidth = 800;
+        var canvasHeight = 600;
+        var heightIncr = 100;
+
         window.onload = startGame();
 
         function startGame() {
-            var width = 800;
-            var height = 600;
+//            var width = 800;
+//            var height = 600;
 
-            theCanvas.width = width;
-            theCanvas.height = height;
+            theCanvas.width = canvasWidth;
+            theCanvas.height = canvasHeight;
             theCanvas.style.border = "2px solid";
             theCanvas.style.position = "absolute";
             theCanvas.style.top = 0;
             theCanvas.style.left = 0;
 
-            theBackground.width = width;
-            theBackground.height = height;
+            theBackground.width = canvasWidth;
+            theBackground.height = canvasHeight;
             theBackground.style.position = "absolute";
             theBackground.style.top = 0;
             theBackground.style.left = 0;
@@ -57,18 +61,20 @@
 //            theContext.fillStyle = 'grey';
 //        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
 
-        drawBackground(100);
+        drawBackground();
 
         }
 
-        function drawBackground(heightIncr) {
+        function drawBackground() {
             theBackContext.fillRect(0,heightIncr,theBackground.width,10);
             theBackContext.fillRect(0,theBackground.height - heightIncr,theBackground.width,10);
-            theBackContext.setLineDash([20, 10]);
-            theBackContext.beginPath();
-            theBackContext.moveTo(0,heightIncr + 50);
-            theBackContext.lineTo(theBackground.width,heightIncr + 50);
-            theBackContext.stroke();
+            for (var i = 1; i < 8; i++) {
+                theBackContext.setLineDash([20, 10]);
+                theBackContext.beginPath();
+                theBackContext.moveTo(0, heightIncr + (50 * i));
+                theBackContext.lineTo(theBackground.width, heightIncr + (50 * i));
+                theBackContext.stroke();
+            }
         }
 
         var Player = function() {
