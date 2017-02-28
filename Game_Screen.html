@@ -62,7 +62,7 @@
 //        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
 
         drawBackground();
-
+            setInterval(draw,40);
         }
 
         function drawBackground() {
@@ -109,7 +109,7 @@
                 theContext.fillStyle = 'red';
                 theContext.fillRect(this.x, this.y, this.width, this.height);
             };
-            theContext.clear;
+//            theContext.clear;
 //            console.log('cleared during start');
             theContext.fillStyle = 'red';
             theContext.fillRect(this.x, this.y, this.width, this.height);
@@ -129,14 +129,14 @@
             this.update = function () {
 //                theContext.clear;
                 this.x = this.x + this.xSpd;
-                if (this.x < 10 || this.x > 790) {
+                if (this.x < 10 || this.x > canvasWidth - 10) {
                     this.xSpd = -this.xSpd;
                 }
 //                else if (this.x > 795) {
 //                    this.xSpd = -this.xSpd;
 //                }
                 this.y = this.y + this.ySpd;
-                if (this.y < 10 || this.y > 590) {
+                if (this.y < 10 || this.y > canvasHeight - 10) {
                     this.ySpd = -this.ySpd;
                 }
 //                checkBoundaries(this);
@@ -151,8 +151,8 @@
         for (var i = 0; i < 20; i++) {
             frogs[i] = new Frog(
                 // ** Math.random() * (max - min) + min **
-                Math.random() * (790 - 400) + 400,
-                Math.random() * (590 - 0) + 0,
+                Math.random() * (canvasWidth - (canvasWidth/2)) + (canvasWidth/2),
+                Math.random() * ((canvasHeight - heightIncr) - heightIncr) + heightIncr,
                 Math.floor(Math.random() * (3-1) + 1));
 
 
@@ -204,7 +204,7 @@
                         player.x + player.width > frogs[i].x &&
                         player.y < frogs[i].y + frogs[i].height &&
                         player.y + player.height > frogs[i].y) {
-//                    console.log("collision!")
+                    // ADD COLLISION ACTION HERE...
                 }
             }
         }
@@ -222,7 +222,7 @@
             checkCollisions(thePlayer, frogs)
         }
 
-        setInterval(draw,40);
+
 
     </script>
 
