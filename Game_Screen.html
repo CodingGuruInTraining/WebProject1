@@ -57,10 +57,14 @@
 //            theContext.fillStyle = 'grey';
 //        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
 
+        drawBackground(100);
 
-            theBackContext.fillRect(30,100,50,20);
         }
 
+        function drawBackground(heightIncr) {
+            theBackContext.fillRect(0,heightIncr,theBackground.width,10);
+            theBackContext.fillRect(0,theBackground.height - heightIncr,theBackground.width,10);
+        }
 
         var Player = function() {
             this.x = 30;
