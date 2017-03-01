@@ -63,10 +63,11 @@
             for (var i = 1; i < 8; i++) {
                 theBackContext.setLineDash([20, 10]);
                 theBackContext.beginPath();
-                theBackContext.moveTo(0, heightIncr + (50 * i));
-//                theBackContext.moveTo(0, heightIncr + 20 + (15.7 * i));
-                theBackContext.lineTo(theBackground.width, heightIncr + (50 * i));
-//                theBackContext.lineTo(theBackground.width, heightIncr + 20 + (15.7 * i));
+//                theBackContext.moveTo(0, heightIncr + (50 * i));
+                theBackContext.moveTo(0, heightIncr + ((6.74*i)*i));
+//                theBackContext.moveTo(0, heightIncr + (15*i) + (5*i));
+//                theBackContext.lineTo(theBackground.width, heightIncr + (50 * i));
+                theBackContext.lineTo(theBackground.width, heightIncr + ((6.74*i)*i));
                 theBackContext.stroke();
 
 //                space = space - 5;
@@ -78,21 +79,23 @@
             }
         }
 
+
         function drawMountains(xDiff) {
             theBackContext.setLineDash([]);
+            // Left, smaller mountain
             theBackContext.beginPath();
             theBackContext.moveTo(100+xDiff,100);
             theBackContext.lineTo(130+xDiff,50);
             theBackContext.lineTo(160+xDiff,100);
             theBackContext.stroke();
-
+            // Peaks drawer
             theBackContext.beginPath();
             theBackContext.moveTo(115+xDiff,75);
             theBackContext.lineTo(145+xDiff,75);
             theBackContext.lineTo(162+xDiff,45);
             theBackContext.lineTo(193+xDiff,45);
             theBackContext.stroke();
-
+            // Right, larger mountain
             theBackContext.beginPath();
             theBackContext.moveTo(145+xDiff,75);
             theBackContext.lineTo(175+xDiff,20);
