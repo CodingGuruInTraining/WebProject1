@@ -59,12 +59,17 @@
         function drawBackground() {
             theBackContext.fillRect(0,heightIncr,theBackground.width,10);
             theBackContext.fillRect(0,theBackground.height - heightIncr,theBackground.width,10);
+//            var space = 20;
             for (var i = 1; i < 8; i++) {
                 theBackContext.setLineDash([20, 10]);
                 theBackContext.beginPath();
                 theBackContext.moveTo(0, heightIncr + (50 * i));
+//                theBackContext.moveTo(0, heightIncr + 20 + (15.7 * i));
                 theBackContext.lineTo(theBackground.width, heightIncr + (50 * i));
+//                theBackContext.lineTo(theBackground.width, heightIncr + 20 + (15.7 * i));
                 theBackContext.stroke();
+
+//                space = space - 5;
             }
         }
 
