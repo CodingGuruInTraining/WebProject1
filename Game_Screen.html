@@ -71,48 +71,34 @@
 
 //                space = space - 5;
 
-                theBackContext.setLineDash([]);
-                theBackContext.beginPath();
-                theBackContext.moveTo(100,100);
-                theBackContext.lineTo(130,50);
-                theBackContext.lineTo(160,100);
-                theBackContext.stroke();
-
-                theBackContext.beginPath();
-                theBackContext.moveTo(115,75);
-                theBackContext.lineTo(145,75);
-                theBackContext.lineTo(162,45);
-                theBackContext.lineTo(193,45);
-                theBackContext.stroke();
-
-                theBackContext.beginPath();
-                theBackContext.moveTo(145,75);
-                theBackContext.lineTo(175,20);
-                theBackContext.lineTo(235,100);
-                theBackContext.stroke();
-
-
-                theBackContext.beginPath();
-                theBackContext.moveTo(600,100);
-                theBackContext.lineTo(630,50);
-                theBackContext.lineTo(660,100);
-                theBackContext.stroke();
-
-                theBackContext.beginPath();
-                theBackContext.moveTo(615,75);
-                theBackContext.lineTo(645,75);
-                theBackContext.lineTo(662,45);
-                theBackContext.lineTo(693,45);
-                theBackContext.stroke();
-
-                theBackContext.beginPath();
-                theBackContext.moveTo(645,75);
-                theBackContext.lineTo(675,20);
-                theBackContext.lineTo(735,100);
-                theBackContext.stroke();
+                // West Mountains
+                drawMountains(0);
+                // East Mountains
+                drawMountains(500);
             }
         }
 
+        function drawMountains(xDiff) {
+            theBackContext.setLineDash([]);
+            theBackContext.beginPath();
+            theBackContext.moveTo(100+xDiff,100);
+            theBackContext.lineTo(130+xDiff,50);
+            theBackContext.lineTo(160+xDiff,100);
+            theBackContext.stroke();
+
+            theBackContext.beginPath();
+            theBackContext.moveTo(115+xDiff,75);
+            theBackContext.lineTo(145+xDiff,75);
+            theBackContext.lineTo(162+xDiff,45);
+            theBackContext.lineTo(193+xDiff,45);
+            theBackContext.stroke();
+
+            theBackContext.beginPath();
+            theBackContext.moveTo(145+xDiff,75);
+            theBackContext.lineTo(175+xDiff,20);
+            theBackContext.lineTo(235+xDiff,100);
+            theBackContext.stroke();
+        }
 
 
 //        Creating Player Class
