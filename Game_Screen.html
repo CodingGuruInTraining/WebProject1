@@ -16,8 +16,6 @@
         <canvas id="myCanvasBack"></canvas>
         <canvas id="myCanvas"></canvas>
 
-        <!--<canvas id="myCanvas" width="800" height="600" style="border: 2px solid" style="position: absolute"></canvas>-->
-        <!--<canvas id="myCanvasBack" width="800" height="600" style="border: 2px solid" style="position: absolute"></canvas>-->
     </div>
 
     <script>
@@ -33,9 +31,6 @@
         window.onload = startGame();
 
         function startGame() {
-//            var width = 800;
-//            var height = 600;
-
             theCanvas.width = canvasWidth;
             theCanvas.height = canvasHeight;
             theCanvas.style.border = "2px solid";
@@ -48,19 +43,6 @@
             theBackground.style.position = "absolute";
             theBackground.style.top = 0;
             theBackground.style.left = 0;
-
-//            var theCanvas = document.getElementById('myCanvas');
-//            var theContext = theCanvas.getContext('2d');
-//            theContext.fillStyle = 'lightgray';                             // street color
-//
-//            theContext.lineWidth = 5;
-//            theContext.strokeStyle = 'black';
-//
-////        var street = theContext.strokeRect(0,75,800,450);
-////        theContext.fill(street);
-//
-//            theContext.fillStyle = 'grey';
-//        var car = theContext.fillRect(30,theCanvas.height/2,50,20);        // car/player
 
             drawBackground();
             setInterval(draw,40);
@@ -84,13 +66,10 @@
             this.width = 50;
             this.height = 20;
             this.travelDist = 8;
-//            console.log("made new player object");
+
             keyPressed(this);
             this.update = function (keycode) {
-//                console.log("update function with: " + keycode);
-
                 theContext.clearRect(this.x, this.y, this.width, this.height);
-//                console.log('cleared from update');
 
                 switch (keycode) {
                     case 37:    // left
@@ -106,12 +85,12 @@
                         this.y += this.travelDist;
                         break;
                 }
+
                 checkBoundaries(this);
                 theContext.fillStyle = 'red';
                 theContext.fillRect(this.x, this.y, this.width, this.height);
             };
-//            theContext.clear;
-//            console.log('cleared during start');
+
             theContext.fillStyle = 'red';
             theContext.fillRect(this.x, this.y, this.width, this.height);
         };
@@ -122,25 +101,21 @@
             this.spd = spd;
             this.xSpd = Math.random() * (this.spd - (-this.spd) + (-this.spd));
             this.ySpd = Math.random() * (this.spd - (-this.spd) + (-this.spd));
-//            console.log("spd in arr: " + spd);
-//            console.log("spds: " + this.xSpd + " " + this.ySpd);
+
             this.width = 20;
             this.height = 20;
             this.travelDist = 5;
             this.update = function () {
-//                theContext.clear;
                 this.x = this.x + this.xSpd;
                 if (this.x < 10 || this.x > canvasWidth - 10) {
                     this.xSpd = -this.xSpd;
                 }
-//                else if (this.x > 795) {
-//                    this.xSpd = -this.xSpd;
-//                }
+
                 this.y = this.y + this.ySpd;
                 if (this.y < 10 || this.y > canvasHeight - 10) {
                     this.ySpd = -this.ySpd;
                 }
-//                checkBoundaries(this);
+
                 theContext.fillStyle = 'green';
                 theContext.fillRect(this.x, this.y, this.width, this.height);
             };
@@ -155,12 +130,7 @@
                 Math.random() * (canvasWidth - (canvasWidth/2)) + (canvasWidth/2),
                 Math.random() * ((canvasHeight - heightIncr) - heightIncr) + heightIncr,
                 Math.floor(Math.random() * (3-1) + 1));
-
-
-//            console.log("x: " + frogs[i].x + " y: " + frogs[i].y);
-//            theContext.fillRect(frogs[i].x, frogs[i].y, frogs[i].width, frogs[i].height);
         }
-
 
 
         function keyPressed(player) {
@@ -170,29 +140,19 @@
         }
 
         function checkBoundaries(player) {
-//            var badX, badY;
-//            console.log("initial bools: " + badX + " " + badY);
             if (player.x < 0) {
                 player.x = 0;
-//                badX = true;
             }
             else if ((player.x + player.width) >= theCanvas.width) {
                 player.x = (theCanvas.width - player.width);
-//                badX = true;
             }
-
-//            if (badX == true && player.name == "Frog") { player.xSpd = -player.xSpd; }
 
             if (player.y < 0) {
                 player.y = 0;
-//                badY = true;
             }
             else if ((player.y + player.height) >= theCanvas.height) {
                 player.y = (theCanvas.height - player.height);
-//                badY = true;
             }
-//            console.log("end bools: " + badX + " " + badY);
-//            if (badY == true && player.name == "Frog") { player.ySpd = -player.ySpd; }
         }
 
 
@@ -212,19 +172,13 @@
 
 
         function draw() {
-//            console.log("draw function reached");
             theContext.clearRect(0,0,theCanvas.width,theCanvas.height);
-//            theCanvas.clear;
-//            theContext.clear; //style.background(255,255,255);
             thePlayer.update();
             for (var i = 0; i < frogs.length; i++) {
                 frogs[i].update();
             }
             checkCollisions(thePlayer, frogs)
         }
-
-
-
     </script>
 
 </body>
