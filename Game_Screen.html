@@ -58,33 +58,31 @@
 
 //        Background Init function
         function drawBackground() {
-            theBackContext.fillRect(0,heightIncr,theBackground.width,10);
+            theBackContext.fillRect(0,theBackground.height - (heightIncr*3),theBackground.width,10);
             theBackContext.fillRect(0,theBackground.height - heightIncr,theBackground.width,10);
-//            var space = 20;
-            for (var i = 1; i < 8; i++) {
-                theBackContext.setLineDash([20, 10]);
+            theBackContext.strokeStyle = "yellow";
+            theBackContext.lineWidth = 10;
+//            for (var i = 1; i < 8; i++) {
+                theBackContext.setLineDash([25, 15]);
                 theBackContext.beginPath();
-//                theBackContext.moveTo(0, heightIncr + (50 * i));
-                theBackContext.moveTo(0, heightIncr + ((6.74*i)*i));
-//                theBackContext.moveTo(0, heightIncr + (15*i) + (5*i));
-//                theBackContext.lineTo(theBackground.width, heightIncr + (50 * i));
-                theBackContext.lineTo(theBackground.width, heightIncr + ((6.74*i)*i));
+                theBackContext.moveTo(0,theBackground.height-(heightIncr*2));
+                theBackContext.lineTo(theBackground.width,theBackground.height-(heightIncr*2));
                 theBackContext.stroke();
-
-//                space = space - 5;
-
+            theBackContext.fillStyle = 'gray';
                 // West Mountains
                 drawMountains(0);
                 // East Mountains
                 drawMountains(500);
-            }
+//            }
         }
 
 
         function drawMountains(xDiff) {
+
             theBackContext.setLineDash([]);
             // Left, smaller mountain
             theBackContext.beginPath();
+
             theBackContext.moveTo(100+xDiff,100);
             theBackContext.lineTo(130+xDiff,50);
             theBackContext.lineTo(160+xDiff,100);
