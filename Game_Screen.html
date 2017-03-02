@@ -133,6 +133,10 @@
         }
 
 
+;
+
+
+
 //        Creating Player Class
         var Player = function() {
             this.x = 30;
@@ -141,23 +145,43 @@
             this.height = 20;
             this.travelDist = 8;
             keyPressed(this);
+            keyReleased(this);
 //            Player Class' update function
             this.update = function (keycode) {
                 theContext.clearRect(this.x, this.y, this.width, this.height);
-                switch (keycode) {
-                    case 37:    // left
-                        this.x -= this.travelDist;
-                        break;
-                    case 38:    // up
-                        this.y -= this.travelDist;
-                        break;
-                    case 39:    // right
-                        this.x += this.travelDist;
-                        break;
-                    case 40:    // down
-                        this.y += this.travelDist;
-                        break;
+                if (keys[37]) {
+//                    case 37:    // left
+                    this.x -= this.travelDist;
+//                        break;
                 }
+                if (keys[38]) {
+
+//                    case 38:    // up
+                    this.y -= this.travelDist;
+//                        break;
+                }
+                 if (keys[39]) {//   case 39:    // right
+                     this.x += this.travelDist;
+//                        break;
+                 }
+                 if (keys[40]) {//   case 40:    // down
+                        this.y += this.travelDist;
+//                        break;
+                }
+                //                switch (keycode) {
+//                    case 37:    // left
+//                        this.x -= this.travelDist;
+//                        break;
+//                    case 38:    // up
+//                        this.y -= this.travelDist;
+//                        break;
+//                    case 39:    // right
+//                        this.x += this.travelDist;
+//                        break;
+//                    case 40:    // down
+//                        this.y += this.travelDist;
+//                        break;
+//                }
                 checkBoundaries(this);
                 theContext.fillStyle = 'red';
                 theContext.fillRect(this.x, this.y, this.width, this.height);
@@ -165,6 +189,9 @@
             theContext.fillStyle = 'red';
             theContext.fillRect(this.x, this.y, this.width, this.height);
         };
+
+
+
 
 
 
@@ -208,15 +235,23 @@
                 Math.floor(Math.random() * (3-1) + 1));
         }
 
-
+var keys = [];
+//var keyPressed = function() {keys[keyCode] = true;};
+//var keyReleased = function() {keys[keyCode] = false;}
 
 //        Trigger update for Player movement
         function keyPressed(player) {
             document.addEventListener('keydown', function(event) {
+                keys[event.keyCode] = true;
                 player.update(event.keyCode)
             })
         }
-
+        function keyReleased(player) {
+            document.addEventListener('keyup', function(event) {
+                keys[event.keyCode] = false;
+                player.update(event.keyCode);
+            })
+        }
 
 
 //        Keeps Player within the canvas
