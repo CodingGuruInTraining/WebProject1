@@ -82,12 +82,9 @@
             // East Mountains
             drawMountains(500);
 
-            theBackContext.fillStyle = 'gray';
-            theBackContext.beginPath();
-            theBackContext.arc(250,50,60,0,2*Math.PI); //center
-            theBackContext.arc(312,60,40,0,2*Math.PI); //right
-            theBackContext.arc(188,60,40,0,2*Math.PI);  //left
-            theBackContext.fill();
+            drawClouds(0);
+            drawClouds(500);
+
         }
 
 
@@ -117,10 +114,21 @@
         }
 
 
+
+        function drawClouds(xDiff) {
+            theBackContext.fillStyle = 'gray';
+            theBackContext.beginPath();
+            theBackContext.arc(250+xDiff,50,60,0,2*Math.PI); //center
+            theBackContext.arc(312+xDiff,60,40,0,2*Math.PI); //right
+            theBackContext.arc(188+xDiff,60,40,0,2*Math.PI);  //left
+            theBackContext.fill();
+        }
+
+
 //        Creating Player Class
         var Player = function() {
             this.x = 30;
-            this.y = theCanvas.height / 2;
+            this.y = theCanvas.height * .70;
             this.width = 50;
             this.height = 20;
             this.travelDist = 8;
