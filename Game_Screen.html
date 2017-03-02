@@ -201,8 +201,8 @@
         function drawWheels(player) {
             theContext.fillStyle = 'black';
             theContext.beginPath();
-            theContext.arc(player.width/4,player.y-player.height,player.height/2,0,2*Math.PI);
-            theContext.arc((player.width/4)+(player.width/2),player.y-player.height,player.height/2,0,2*Math.PI);
+            theContext.arc(player.x+player.width/6,player.y+player.height/2,player.height/2,0,2*Math.PI);
+            theContext.arc((player.x/4)+(player.width),player.y+player.height/2,player.height/2,0,2*Math.PI);
             theContext.stroke();
         }
 
