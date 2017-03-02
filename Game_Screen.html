@@ -275,11 +275,11 @@
                 theContext.fillText("TIME: " + elapsedTime, 10, 25);
                 theContext.fillText("LIVES: " + playerLives, 10, 45);
             } else {
-                theContext.fillStyle = "black";
-                theContext.fillRect(0,0,canvasWidth,canvasHeight);
-                theContext.fontcolor('red');
+//                theContext.fillStyle = "black";
+                theContext.clearRect(0,0,canvasWidth,canvasHeight);
+                theContext.fillStyle = 'red';
                 theContext.font = "bold 45px MV Boli";
-                theContext.fillText("GAMEOVER",canvasWidth/2,canvasHeight/2);
+                theContext.fillText("GAMEOVER",canvasWidth/3,canvasHeight/2);
             }
         }
     </script>
