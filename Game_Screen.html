@@ -63,22 +63,31 @@
             theBackContext.strokeStyle = "yellow";
             theBackContext.lineWidth = 10;
 //            for (var i = 1; i < 8; i++) {
-                theBackContext.setLineDash([25, 15]);
-                theBackContext.beginPath();
-                theBackContext.moveTo(0,theBackground.height-(heightIncr*2));
-                theBackContext.lineTo(theBackground.width,theBackground.height-(heightIncr*2));
-                theBackContext.stroke();
-            theBackContext.fillStyle = 'gray';
-                // West Mountains
-                drawMountains(0);
-                // East Mountains
-                drawMountains(500);
+            theBackContext.setLineDash([25, 15]);
+            theBackContext.beginPath();
+            theBackContext.moveTo(0,(theBackground.height-(heightIncr*2))*.97);
+            theBackContext.lineTo(theBackground.width,(theBackground.height-(heightIncr*2))*.97);
+            theBackContext.stroke();
+
+
+            theBackContext.setLineDash([]);
+            theBackContext.lineWidth = 5;
+            theBackContext.strokeStyle = 'brown';
+            theBackContext.beginPath();
+            theBackContext.moveTo(0,(theBackground.height/2) - heightIncr);
+            theBackContext.lineTo(theBackground.width,(theBackground.height/2) - heightIncr);
+            theBackContext.stroke();
+
+            // West Mountains
+            drawMountains(0);
+            // East Mountains
+            drawMountains(500);
 //            }
         }
 
 
         function drawMountains(xDiff) {
-
+            theBackContext.strokeStyle = 'gray';
             theBackContext.setLineDash([]);
             // Left, smaller mountain
             theBackContext.beginPath();
