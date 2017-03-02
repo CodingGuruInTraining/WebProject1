@@ -235,10 +235,7 @@
                 Math.floor(Math.random() * (3-1) + 1));
         }
 
-var keys = [];
-//var keyPressed = function() {keys[keyCode] = true;};
-//var keyReleased = function() {keys[keyCode] = false;}
-
+        var keys = [];
 //        Trigger update for Player movement
         function keyPressed(player) {
             document.addEventListener('keydown', function(event) {
@@ -281,12 +278,14 @@ var keys = [];
 //        Detect when Player runs into a Frog object
         function checkCollisions(player, frogs) {
             for (var i = 0; i < frogs.length; i++) {
-                if (player.x < frogs[i].x + frogs[i].width &&
-                        player.x + player.width > frogs[i].x &&
-                        player.y < frogs[i].y + frogs[i].height &&
-                        player.y + player.height > frogs[i].y) {
+                if (player.x < frogs[i].x + frogs[i].width &&       // if player is left of frog's width
+                        player.x + player.width > frogs[i].x &&     // if player's width goes past frog
+                        player.y < frogs[i].y + frogs[i].height &&  // if player is above frog's height
+                        player.y + player.height > frogs[i].y) {    // if player's height is below frog
                     // ADD COLLISION ACTION HERE...
-                    playerLives -= 1;
+                    setTimeout(function(){
+                        playerLives -= 1;
+                    },1000);
                     if (playerLives <= 0) {
                         gameover = true;
                     }
