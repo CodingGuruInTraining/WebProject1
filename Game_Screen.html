@@ -16,10 +16,10 @@
     <canvas id="myCanvasBack"></canvas>
     <canvas id="myCanvas"></canvas>
 </div>
-<div>
-    <p>In a world where cars can change their direction in an instance...</p>
-    <p>One car will risk everything to make it past the highway of crossing frogs!!!</p>
-</div>
+<!--<div>-->
+    <!--<p>In a world where cars can change their direction in an instance...</p>-->
+    <!--<p>One car will risk everything to make it past the highway of crossing frogs!!!</p>-->
+<!--</div>-->
     <script>
 //        Defining canvas elements
         var theCanvas = document.getElementById('myCanvas');
@@ -63,6 +63,10 @@
             theBackground.style.left = 0;
 
             drawBackground();
+            setTimeout(function(){
+                this.font = "bold 15px Arial";
+                theContext.fillText("blah",10,canvasHeight-10)
+            },10000);
             setTimeout(setInterval(function(){
                 elapsedTime += 1;
             },1000),2000);
@@ -100,9 +104,7 @@
             drawClouds(0);
             drawClouds(500);
 
-            setTimeout(function(){
-                theContext.fillText("blah",10,canvasHeight-10)
-            },10000);
+
 
 //            setTimeout(setInterval(function(){
 //                elapsedTime += 1;
