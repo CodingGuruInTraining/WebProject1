@@ -33,6 +33,10 @@
         var playerLives = 3;
         var elapsedTime = 0;
         var gameover = false;
+        var startX = 30;
+        var startY = canvasHeight * .70;
+
+
 
 //        Startup event listener
         window.onload = startGame();
@@ -139,8 +143,8 @@
 
 //        Creating Player Class
         var Player = function() {
-            this.x = 30;
-            this.y = theCanvas.height * .70;
+            this.x = startX;
+            this.y = startY;
             this.width = 50;
             this.height = 20;
             this.travelDist = 8;
@@ -283,9 +287,11 @@
                         player.y < frogs[i].y + frogs[i].height &&  // if player is above frog's height
                         player.y + player.height > frogs[i].y) {    // if player's height is below frog
                     // ADD COLLISION ACTION HERE...
-                    setTimeout(function(){
+//                    setTimeout(function(){
                         playerLives -= 1;
-                    },1000);
+                        player.x = startX;
+                        player.y = startY;
+//                    },1000);
                     if (playerLives <= 0) {
                         gameover = true;
                     }
