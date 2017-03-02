@@ -62,7 +62,6 @@
             theBackContext.fillRect(0,theBackground.height - heightIncr,theBackground.width,10);
             theBackContext.strokeStyle = "yellow";
             theBackContext.lineWidth = 10;
-//            for (var i = 1; i < 8; i++) {
             theBackContext.setLineDash([25, 15]);
             theBackContext.beginPath();
             theBackContext.moveTo(0,(theBackground.height-(heightIncr*2))*.97);
@@ -82,7 +81,13 @@
             drawMountains(0);
             // East Mountains
             drawMountains(500);
-//            }
+
+            theBackContext.fillStyle = 'gray';
+            theBackContext.beginPath();
+            theBackContext.arc(250,50,60,0,2*Math.PI); //center
+            theBackContext.arc(312,60,40,0,2*Math.PI); //right
+            theBackContext.arc(188,60,40,0,2*Math.PI);  //left
+            theBackContext.fill();
         }
 
 
