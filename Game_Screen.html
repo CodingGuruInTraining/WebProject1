@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <title>Highway Crossing Frogs</title>
     <!--import CSS page here-->
-    <!--<link type="text/css" rel="stylesheet" href="file name"/>-->
+<!--<link type="text/css" rel="stylesheet" href="file name"/>-->
 
-    <script language="javascript" type="text/javascript" src="javascript_code.js"></script>
+<script language="javascript" type="text/javascript" src="javascript_code.js"></script>
 </head>
 <body>
 <!--Adding HTML elements-->
-    <div style="position: relative">
-        <!--<p id="score_area">SCORE: <span id="time">0</span></p>-->
-        <!--<p id="lives_area">LIVES: <span id="lives">3</span></p>-->
-        <canvas id="myCanvasBack"></canvas>
-        <canvas id="myCanvas"></canvas>
-    </div>
+<div style="position: relative">
+    <!--<p id="score_area">SCORE: <span id="time">0</span></p>-->
+    <!--<p id="lives_area">LIVES: <span id="lives">3</span></p>-->
+    <canvas id="myCanvasBack"></canvas>
+    <canvas id="myCanvas"></canvas>
+</div>
 
     <script>
 //        Defining canvas elements
@@ -186,7 +186,7 @@
                     this.xSpd = -this.xSpd;
                 }
                 this.y = this.y + this.ySpd;
-                if (this.y < 10 || this.y > canvasHeight - 10) {
+                if (this.y < ((canvasHeight/2)-50) || this.y > canvasHeight - 50) {
                     this.ySpd = -this.ySpd;
                 }
                 theContext.fillStyle = 'green';
