@@ -264,16 +264,23 @@
 
 //        Redraws all active objects
         function draw() {
-            theContext.clearRect(0,0,theCanvas.width,theCanvas.height);
-            thePlayer.update();
-            for (var i = 0; i < frogs.length; i++) {
-                frogs[i].update();
+            if (gameover == false) {
+                theContext.clearRect(0, 0, theCanvas.width, theCanvas.height);
+                thePlayer.update();
+                for (var i = 0; i < frogs.length; i++) {
+                    frogs[i].update();
+                }
+                checkCollisions(thePlayer, frogs);
+                theContext.font = "bold 15px MV Boli"; // Consolas";  // Gill Sans Ultra Bold     MV Boli
+                theContext.fillText("TIME: " + elapsedTime, 10, 25);
+                theContext.fillText("LIVES: " + playerLives, 10, 45);
+            } else {
+                theContext.fillStyle = "black";
+                theContext.fillRect(0,0,canvasWidth,canvasHeight);
+                theContext.fontcolor('red');
+                theContext.font = "bold 45px MV Boli";
+                theContext.fillText("GAMEOVER",canvasWidth/2,canvasHeight/2);
             }
-            checkCollisions(thePlayer, frogs);
-            theContext.fontWeight='bold';
-            theContext.font = "bold 15px MV Boli"; // Consolas";  // Gill Sans Ultra Bold     MV Boli
-            theContext.fillText("TIME: " + elapsedTime,10,25);
-            theContext.fillText("LIVES: " + playerLives,10,45);
         }
     </script>
 
