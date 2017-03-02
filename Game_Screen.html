@@ -199,7 +199,7 @@
                 theContext.beginPath();
                 theContext.arc(this.x+this.travelDist,this.y+this.height/2,this.height/2,0,2*Math.PI);
                 theContext.arc(this.x+this.width,this.y+this.height/2,this.height/2,0,2*Math.PI);
-                theContext.stroke();
+                theContext.fill();
             };
 
 
@@ -214,16 +214,8 @@
             theContext.beginPath();
             theContext.arc(this.x+this.width/6,this.y+this.height/2,this.height/2,0,2*Math.PI);
             theContext.arc((this.x/4)+(this.width),this.y+this.height/2,this.height/2,0,2*Math.PI);
-            theContext.stroke();
+            theContext.fill();
         };
-
-        function drawWheels(player) {
-            theContext.fillStyle = 'black';
-            theContext.beginPath();
-            theContext.arc(player.x+player.width/6,player.y+player.height/2,player.height/2,0,2*Math.PI);
-            theContext.arc((player.x/4)+(player.width),player.y+player.height/2,player.height/2,0,2*Math.PI);
-            theContext.stroke();
-        }
 
 
 
