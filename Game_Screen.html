@@ -11,8 +11,8 @@
 <body>
 <!--Adding HTML elements-->
     <div style="position: relative">
-        <p id="score_area">SCORE: <span id="score">0</span></p>
-        <p id="lives_area">LIVES: <span id="lives">3</span></p>
+        <!--<p id="score_area">SCORE: <span id="time">0</span></p>-->
+        <!--<p id="lives_area">LIVES: <span id="lives">3</span></p>-->
         <canvas id="myCanvasBack"></canvas>
         <canvas id="myCanvas"></canvas>
     </div>
@@ -23,11 +23,16 @@
         var theContext = theCanvas.getContext('2d');
         var theBackground = document.getElementById('myCanvasBack');
         var theBackContext = theBackground.getContext('2d');
+//        var livesSpan = document.getElementById('lives');
+//        var timeSpan = document.getElementById('time');
 
 //        Setting global variables
         var canvasWidth = 800;
         var canvasHeight = 600;
         var heightIncr = 100;
+        var playerLives = 3;
+        var elapsedTime = 0;
+        var gameover = false;
 
 //        Startup event listener
         window.onload = startGame();
@@ -85,6 +90,9 @@
             drawClouds(0);
             drawClouds(500);
 
+            setTimeout(setInterval(function(){
+                elapsedTime += 1;
+            },1000),2000)
         }
 
 
@@ -243,6 +251,10 @@
                         player.y < frogs[i].y + frogs[i].height &&
                         player.y + player.height > frogs[i].y) {
                     // ADD COLLISION ACTION HERE...
+                    playerLives -= 1;
+                    if (playerLives <= 0) {
+                        gameover = true;
+                    }
                 }
             }
         }
@@ -257,7 +269,11 @@
             for (var i = 0; i < frogs.length; i++) {
                 frogs[i].update();
             }
-            checkCollisions(thePlayer, frogs)
+            checkCollisions(thePlayer, frogs);
+            theContext.fontWeight='bold';
+            theContext.font = "bold 15px MV Boli"; // Consolas";  // Gill Sans Ultra Bold     MV Boli
+            theContext.fillText("TIME: " + elapsedTime,10,25);
+            theContext.fillText("LIVES: " + playerLives,10,45);
         }
     </script>
 
@@ -270,3 +286,4 @@
 <!--http://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range-->
 <!--http://stackoverflow.com/questions/2142535/how-to-clear-the-canvas-for-redrawing-->
 <!--http://stackoverflow.com/questions/15397036/drawing-dashed-lines-on-html5-canvas-->
+<!--https://www.khanacademy.org/computing/computer-programming/programming/animation-basics/p/challenge-parting-clouds-->
