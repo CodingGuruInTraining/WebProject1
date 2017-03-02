@@ -145,8 +145,8 @@
         var Player = function() {
             this.x = startX;
             this.y = startY;
-            this.width = 50;
-            this.height = 20;
+            this.width = 75;
+            this.height = 40;
             this.travelDist = 8;
             keyPressed(this);
             keyReleased(this);
@@ -188,13 +188,23 @@
 //                }
                 checkBoundaries(this);
                 theContext.fillStyle = 'red';
-                theContext.fillRect(this.x, this.y, this.width, this.height);
+                theContext.fillRect(this.x, this.y, this.width, this.height/2);
+                theContext.fillRect(this.x + this.travelDist,this.y - this.height/2,this.width/2,this.height);
+                drawWheels(this);
             };
             theContext.fillStyle = 'red';
-            theContext.fillRect(this.x, this.y, this.width, this.height);
+            theContext.fillRect(this.x, this.y - this.y/2, this.width, this.height/2);
+            theContext.fillRect(this.x + this.x/2,this.y - this.y/2,this.width/2,this.height);
+            drawWheels(this);
         };
 
-
+        function drawWheels(player) {
+            theContext.fillStyle = 'black';
+            theContext.beginPath();
+            theContext.arc(player.width/4,player.y-player.height,player.height/2,0,2*Math.PI);
+            theContext.arc((player.width/4)+(player.width/2),player.y-player.height,player.height/2,0,2*Math.PI);
+            theContext.stroke();
+        }
 
 
 
