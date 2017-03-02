@@ -204,7 +204,7 @@
             frogs[i] = new Frog(
                 // ** Math.random() * (max - min) + min **
                 Math.random() * (canvasWidth - (canvasWidth/2)) + (canvasWidth/2),
-                Math.random() * ((canvasHeight - heightIncr) - heightIncr) + heightIncr,
+                Math.random() * ((canvasHeight - (heightIncr/2)) - ((canvasHeight/2)-50)) + ((canvasHeight/2)-50),
                 Math.floor(Math.random() * (3-1) + 1));
         }
 
