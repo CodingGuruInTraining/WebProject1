@@ -60,7 +60,7 @@
         function drawBackground() {
             theBackContext.fillRect(0,theBackground.height - (heightIncr*3),theBackground.width,10);
             theBackContext.fillRect(0,theBackground.height - heightIncr,theBackground.width,10);
-            theBackContext.strokeStyle = "yellow";
+            theBackContext.strokeStyle = "rgb(237,227,40)";
             theBackContext.lineWidth = 10;
             theBackContext.setLineDash([25, 15]);
             theBackContext.beginPath();
@@ -71,7 +71,7 @@
 
             theBackContext.setLineDash([]);
             theBackContext.lineWidth = 5;
-            theBackContext.strokeStyle = 'brown';
+            theBackContext.strokeStyle = 'rgb(239,205,151)';
             theBackContext.beginPath();
             theBackContext.moveTo(0,(theBackground.height/2) - heightIncr);
             theBackContext.lineTo(theBackground.width,(theBackground.height/2) - heightIncr);
@@ -116,7 +116,7 @@
 
 
         function drawClouds(xDiff) {
-            theBackContext.fillStyle = 'gray';
+            theBackContext.fillStyle = 'rgb(210,223,244)';
             theBackContext.beginPath();
             theBackContext.arc(250+xDiff,50,60,0,2*Math.PI); //center
             theBackContext.arc(312+xDiff,60,40,0,2*Math.PI); //right
