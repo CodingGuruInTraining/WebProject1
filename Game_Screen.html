@@ -11,8 +11,8 @@
 <body>
 <!--Adding HTML elements-->
     <div style="position: relative">
-        <p id="score_area">SCORE: <span id="score">0</span></p>
-        <p id="lives_area">LIVES: <span id="lives">3</span></p>
+        <!--<p id="score_area">SCORE: <span id="time">0</span></p>-->
+        <!--<p id="lives_area">LIVES: <span id="lives">3</span></p>-->
         <canvas id="myCanvasBack"></canvas>
         <canvas id="myCanvas"></canvas>
     </div>
@@ -23,11 +23,16 @@
         var theContext = theCanvas.getContext('2d');
         var theBackground = document.getElementById('myCanvasBack');
         var theBackContext = theBackground.getContext('2d');
+//        var livesSpan = document.getElementById('lives');
+//        var timeSpan = document.getElementById('time');
 
 //        Setting global variables
         var canvasWidth = 800;
         var canvasHeight = 600;
         var heightIncr = 100;
+        var playerLives = 3;
+        var elapsedTime = 0;
+        var gameover = false;
 
 //        Startup event listener
         window.onload = startGame();
@@ -58,57 +63,80 @@
 
 //        Background Init function
         function drawBackground() {
-            theBackContext.fillRect(0,heightIncr,theBackground.width,10);
+            theBackContext.fillRect(0,theBackground.height - (heightIncr*3),theBackground.width,10);
             theBackContext.fillRect(0,theBackground.height - heightIncr,theBackground.width,10);
-//            var space = 20;
-            for (var i = 1; i < 8; i++) {
-                theBackContext.setLineDash([20, 10]);
-                theBackContext.beginPath();
-//                theBackContext.moveTo(0, heightIncr + (50 * i));
-                theBackContext.moveTo(0, heightIncr + ((6.74*i)*i));
-//                theBackContext.moveTo(0, heightIncr + (15*i) + (5*i));
-//                theBackContext.lineTo(theBackground.width, heightIncr + (50 * i));
-                theBackContext.lineTo(theBackground.width, heightIncr + ((6.74*i)*i));
-                theBackContext.stroke();
+            theBackContext.strokeStyle = "rgb(237,227,40)";
+            theBackContext.lineWidth = 10;
+            theBackContext.setLineDash([25, 15]);
+            theBackContext.beginPath();
+            theBackContext.moveTo(0,(theBackground.height-(heightIncr*2))*.97);
+            theBackContext.lineTo(theBackground.width,(theBackground.height-(heightIncr*2))*.97);
+            theBackContext.stroke();
 
-//                space = space - 5;
 
-                // West Mountains
-                drawMountains(0);
-                // East Mountains
-                drawMountains(500);
-            }
+            theBackContext.setLineDash([]);
+            theBackContext.lineWidth = 5;
+            theBackContext.strokeStyle = 'rgb(239,205,151)';
+            theBackContext.beginPath();
+            theBackContext.moveTo(0,(theBackground.height/2) - heightIncr);
+            theBackContext.lineTo(theBackground.width,(theBackground.height/2) - heightIncr);
+            theBackContext.stroke();
+
+            // West Mountains
+            drawMountains(0);
+            // East Mountains
+            drawMountains(500);
+
+            drawClouds(0);
+            drawClouds(500);
+
+            setTimeout(setInterval(function(){
+                elapsedTime += 1;
+            },1000),2000)
         }
 
 
         function drawMountains(xDiff) {
+            theBackContext.strokeStyle = 'gray';
             theBackContext.setLineDash([]);
+            var baseline = (theBackground.height/2) - heightIncr;
             // Left, smaller mountain
             theBackContext.beginPath();
-            theBackContext.moveTo(100+xDiff,100);
-            theBackContext.lineTo(130+xDiff,50);
-            theBackContext.lineTo(160+xDiff,100);
+            theBackContext.moveTo(100+xDiff,baseline);
+            theBackContext.lineTo(130+xDiff,baseline-50);
+            theBackContext.lineTo(160+xDiff,baseline);
             theBackContext.stroke();
             // Peaks drawer
             theBackContext.beginPath();
-            theBackContext.moveTo(115+xDiff,75);
-            theBackContext.lineTo(145+xDiff,75);
-            theBackContext.lineTo(162+xDiff,45);
-            theBackContext.lineTo(193+xDiff,45);
+            theBackContext.moveTo(115+xDiff,baseline-25);
+            theBackContext.lineTo(145+xDiff,baseline-25);
+            theBackContext.lineTo(162+xDiff,baseline-55);
+            theBackContext.lineTo(193+xDiff,baseline-55);
             theBackContext.stroke();
             // Right, larger mountain
             theBackContext.beginPath();
-            theBackContext.moveTo(145+xDiff,75);
-            theBackContext.lineTo(175+xDiff,20);
-            theBackContext.lineTo(235+xDiff,100);
+            theBackContext.moveTo(145+xDiff,baseline-25);
+            theBackContext.lineTo(175+xDiff,baseline-80);
+            theBackContext.lineTo(235+xDiff,baseline);
             theBackContext.stroke();
+        }
+
+
+
+        function drawClouds(xDiff) {
+            theBackContext.fillStyle = 'rgb(210,223,244)';
+            theBackContext.beginPath();
+            theBackContext.arc(250+xDiff,50,60,0,2*Math.PI); //center
+            theBackContext.arc(312+xDiff,60,40,0,2*Math.PI); //right
+            theBackContext.arc(188+xDiff,60,40,0,2*Math.PI);  //left
+            theBackContext.fill();
         }
 
 
 //        Creating Player Class
         var Player = function() {
             this.x = 30;
-            this.y = theCanvas.height / 2;
+            this.y = theCanvas.height * .70;
             this.width = 50;
             this.height = 20;
             this.travelDist = 8;
@@ -223,6 +251,10 @@
                         player.y < frogs[i].y + frogs[i].height &&
                         player.y + player.height > frogs[i].y) {
                     // ADD COLLISION ACTION HERE...
+                    playerLives -= 1;
+                    if (playerLives <= 0) {
+                        gameover = true;
+                    }
                 }
             }
         }
@@ -232,12 +264,23 @@
 
 //        Redraws all active objects
         function draw() {
-            theContext.clearRect(0,0,theCanvas.width,theCanvas.height);
-            thePlayer.update();
-            for (var i = 0; i < frogs.length; i++) {
-                frogs[i].update();
+            if (gameover == false) {
+                theContext.clearRect(0, 0, theCanvas.width, theCanvas.height);
+                thePlayer.update();
+                for (var i = 0; i < frogs.length; i++) {
+                    frogs[i].update();
+                }
+                checkCollisions(thePlayer, frogs);
+                theContext.font = "bold 15px MV Boli"; // Consolas";  // Gill Sans Ultra Bold     MV Boli
+                theContext.fillText("TIME: " + elapsedTime, 10, 25);
+                theContext.fillText("LIVES: " + playerLives, 10, 45);
+            } else {
+//                theContext.fillStyle = "black";
+                theContext.clearRect(0,0,canvasWidth,canvasHeight);
+                theContext.fillStyle = 'red';
+                theContext.font = "bold 45px MV Boli";
+                theContext.fillText("GAMEOVER",canvasWidth/3,canvasHeight/2);
             }
-            checkCollisions(thePlayer, frogs)
         }
     </script>
 
@@ -250,3 +293,4 @@
 <!--http://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range-->
 <!--http://stackoverflow.com/questions/2142535/how-to-clear-the-canvas-for-redrawing-->
 <!--http://stackoverflow.com/questions/15397036/drawing-dashed-lines-on-html5-canvas-->
+<!--https://www.khanacademy.org/computing/computer-programming/programming/animation-basics/p/challenge-parting-clouds-->
