@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Highway Crossing Frogs</title>
-
+<!--Linking CSS stylesheet.-->
 <link type="text/css" rel="stylesheet" href="styles.css"/>
-
+<!--Linking JavaScript file, but couldn't get to work.-->
 <script language="javascript" type="text/javascript" src="javascript_code.js"></script>
 </head>
 <body>
@@ -17,8 +17,6 @@
 <div id="intros">
     <p id="intro1"></p>
     <p id="intro2"></p>
-    <!--<p>In a world where cars can change their direction in an instance...</p>-->
-    <!--<p>One car will risk everything to make it past the highway of crossing frogs!!!</p>-->
 </div>
     <script>
 //        Defining canvas elements
@@ -26,8 +24,10 @@
         var theContext = theCanvas.getContext('2d');
         var theBackground = document.getElementById('myCanvasBack');
         var theBackContext = theBackground.getContext('2d');
-//        var livesSpan = document.getElementById('lives');
-//        var timeSpan = document.getElementById('time');
+        var theDiv = document.getElementById("intros");
+        var intro1 = document.getElementById("intro1");
+        var intro2 = document.getElementById("intro2");
+
 
 //        Setting global variables
         var canvasWidth = 800;
@@ -38,13 +38,24 @@
         var gameover = false;
         var startX = 30;
         var startY = canvasHeight * .70;
-
+        var keys = [];
 
 
 //        Startup event listener
-        window.onload = startGame();
+        window.onload = startIntro();
 
 
+        // Introduction function
+        function startIntro() {
+            theDiv.style.position = "absolute";
+            theDiv.style.top = (canvasHeight+20) + "px";
+            theDiv.style.left = "15px";
+            intro1.innerHTML = "In a world where cars can change their direction in an instance...";
+            intro2.innerHTML = "One car will risk everything to make it past the highway of crossing frogs!!!";
+            setTimeout(startGame,5000);
+            intro1.innerHTML = "Instructions: Use the arrow keys to control the car and avoid hitting any frogs.";
+            intro2.innerHTML = "The game ends when you run out of lives (shown in top left corner).";
+        }
 
 
 //        Init function
@@ -63,29 +74,11 @@
             theBackground.style.left = 0;
 
             drawBackground();
-//            setTimeout(function(){
-//                this.font = "bold 15px Arial";
-//                theContext.fillText("blah",10,canvasHeight-10)
-//            },1000);
-
-
-            var theDiv = document.getElementById("intros");
-            theDiv.style.position = "absolute";
-            theDiv.style.top = (canvasHeight+20) + "px";
-            theDiv.style.left = "15px";
-            var intro1 = document.getElementById("intro1");
-            intro1.innerHTML = "In a world where cars can change their direction in an instance...";
-            var intro2 = document.getElementById("intro2");
-            intro2.innerHTML = "One car will risk everything to make it past the highway of crossing frogs!!!";
-
-
-
             setTimeout(setInterval(function(){
                 elapsedTime += 1;
-            },1000),2000);
+            },1000),3000);
             setInterval(draw,40);
         }
-
 
 
 //        Background Init function
@@ -100,7 +93,6 @@
             theBackContext.lineTo(theBackground.width,(theBackground.height-(heightIncr*2))*.97);
             theBackContext.stroke();
 
-
             theBackContext.setLineDash([]);
             theBackContext.lineWidth = 5;
             theBackContext.strokeStyle = 'rgb(239,205,151)';
@@ -113,15 +105,10 @@
             drawMountains(0);
             // East Mountains
             drawMountains(500);
-
+            // West Clouds
             drawClouds(0);
+            // East Clouds
             drawClouds(500);
-
-
-
-//            setTimeout(setInterval(function(){
-//                elapsedTime += 1;
-//            },1000),2000)
         }
 
 
@@ -151,7 +138,6 @@
         }
 
 
-
         function drawClouds(xDiff) {
             theBackContext.fillStyle = 'rgb(210,223,244)';
             theBackContext.beginPath();
@@ -160,10 +146,6 @@
             theBackContext.arc(188+xDiff,60,40,0,2*Math.PI);  //left
             theBackContext.fill();
         }
-
-
-;
-
 
 
 //        Creating Player Class
@@ -178,71 +160,41 @@
 //            Player Class' update function
             this.update = function (keycode) {
                 theContext.clearRect(this.x, this.y, this.width, this.height);
-                if (keys[37]) {
-//                    case 37:    // left
+                if (keys[37]) { // left
                     this.x -= this.travelDist;
-//                        break;
                 }
-                if (keys[38]) {
-
-//                    case 38:    // up
+                if (keys[38]) { // up
                     this.y -= this.travelDist;
-//                        break;
                 }
-                 if (keys[39]) {//   case 39:    // right
+                 if (keys[39]) { // right
                      this.x += this.travelDist;
-//                        break;
                  }
-                 if (keys[40]) {//   case 40:    // down
+                 if (keys[40]) { // down
                         this.y += this.travelDist;
-//                        break;
                 }
-                //                switch (keycode) {
-//                    case 37:    // left
-//                        this.x -= this.travelDist;
-//                        break;
-//                    case 38:    // up
-//                        this.y -= this.travelDist;
-//                        break;
-//                    case 39:    // right
-//                        this.x += this.travelDist;
-//                        break;
-//                    case 40:    // down
-//                        this.y += this.travelDist;
-//                        break;
-//                }
                 checkBoundaries(this);
+                // Redraws car
                 theContext.fillStyle = 'red';
                 theContext.fillRect(this.x, this.y, this.width, this.height/2);
                 theContext.fillRect(this.x + this.travelDist,this.y - this.height/2,this.width/2,this.height);
-//                drawWheels(this);
-
-
-
-
+                // Redraws wheels
                 theContext.fillStyle = 'black';
                 theContext.beginPath();
                 theContext.arc(this.x+this.travelDist,this.y+this.height/2,this.height/2,0,2*Math.PI);
                 theContext.arc(this.x+this.width,this.y+this.height/2,this.height/2,0,2*Math.PI);
                 theContext.fill();
             };
-
-
-
-
+            // Draws car
             theContext.fillStyle = 'red';
             theContext.fillRect(this.x, this.y - this.y/2, this.width, this.height/2);
             theContext.fillRect(this.x + this.x/2,this.y - this.y/2,this.width/2,this.height);
-//            drawWheels(this);
-
+            // Draws wheels
             theContext.fillStyle = 'black';
             theContext.beginPath();
             theContext.arc(this.x+this.width/6,this.y+this.height/2,this.height/2,0,2*Math.PI);
             theContext.arc((this.x/4)+(this.width),this.y+this.height/2,this.height/2,0,2*Math.PI);
             theContext.fill();
         };
-
-
 
 
 //        Creating Frog Class
@@ -252,7 +204,6 @@
             this.spd = spd;
             this.xSpd = Math.random() * (this.spd - (-this.spd) + (-this.spd));
             this.ySpd = Math.random() * (this.spd - (-this.spd) + (-this.spd));
-
             this.width = 20;
             this.height = 20;
             this.travelDist = 5;
@@ -274,7 +225,6 @@
         };
 
 
-
 //        Creating array for all Frog objects
         var frogs = [];
         for (var i = 0; i < 20; i++) {
@@ -285,8 +235,8 @@
                 Math.floor(Math.random() * (3-1) + 1));
         }
 
-        var keys = [];
-//        Trigger update for Player movement
+
+//        Triggers update for Player movement
         function keyPressed(player) {
             document.addEventListener('keydown', function(event) {
                 keys[event.keyCode] = true;
@@ -318,11 +268,8 @@
         }
 
 
-
 //        Creates Player object
         var thePlayer = new Player();
-
-
 
 
 //        Detect when Player runs into a Frog object
@@ -332,20 +279,15 @@
                         player.x + player.width > frogs[i].x &&     // if player's width goes past frog
                         player.y < frogs[i].y + frogs[i].height &&  // if player is above frog's height
                         player.y + player.height > frogs[i].y) {    // if player's height is below frog
-                    // ADD COLLISION ACTION HERE...
-//                    setTimeout(function(){
                         playerLives -= 1;
                         player.x = startX;
                         player.y = startY;
-//                    },1000);
                     if (playerLives <= 0) {
                         gameover = true;
                     }
                 }
             }
         }
-
-
 
 
 //        Redraws all active objects
@@ -357,11 +299,10 @@
                     frogs[i].update();
                 }
                 checkCollisions(thePlayer, frogs);
-                theContext.font = "bold 15px MV Boli"; // Consolas";  // Gill Sans Ultra Bold     MV Boli
+                theContext.font = "bold 15px MV Boli";
                 theContext.fillText("TIME: " + elapsedTime, 10, 25);
                 theContext.fillText("LIVES: " + playerLives, 10, 45);
             } else {
-//                theContext.fillStyle = "black";
                 theContext.clearRect(0,0,canvasWidth,canvasHeight);
                 theContext.fillStyle = 'red';
                 theContext.font = "bold 45px MV Boli";
@@ -380,3 +321,4 @@
 <!--http://stackoverflow.com/questions/2142535/how-to-clear-the-canvas-for-redrawing-->
 <!--http://stackoverflow.com/questions/15397036/drawing-dashed-lines-on-html5-canvas-->
 <!--https://www.khanacademy.org/computing/computer-programming/programming/animation-basics/p/challenge-parting-clouds-->
+<!--http://stackoverflow.com/questions/6802956/how-to-position-a-div-in-a-specific-coordinates-->
